@@ -73,12 +73,17 @@ npm start
 ```
 The server starts on **port 5000**, serving both the API at `/api/*` and the frontend at `/`.
 
-> If you do not set `MONGO_URI`, the app spins up an **in-memory MongoDB** automatically — perfect for local demos. To use a persistent **MongoDB Atlas** database, edit `backend/.env` and set:
-> ```
-> MONGO_URI=mongodb+srv://<user>:<pass>@<cluster>.mongodb.net/airlineDB
-> ```
+### 3. Configure credentials (Replit Secrets)
+Real credentials are kept out of source control by storing them in **Replit Secrets**, not in `backend/.env`. Set the following two secrets in the Replit Secrets tab:
 
-### 3. Default seeded accounts
+| Key          | Value                                                           |
+|--------------|-----------------------------------------------------------------|
+| `MONGO_URI`  | Your MongoDB Atlas connection string (e.g. `mongodb+srv://...`) |
+| `JWT_SECRET` | A long random string used to sign auth tokens                   |
+
+Restart the app after setting these. The server will read them automatically via `process.env`. If `MONGO_URI` is empty, the app spins up an **in-memory MongoDB** for development.
+
+### 4. Default seeded accounts
 | Role     | Email                  | Password   |
 |----------|------------------------|------------|
 | Admin    | `admin@airline.test`   | `admin123` |

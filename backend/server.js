@@ -3,6 +3,10 @@ const cors = require('cors');
 const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '.env') });
 
+if (!process.env.JWT_SECRET) {
+  process.env.JWT_SECRET = 'dev_only_insecure_secret_set_a_real_one_in_replit_secrets';
+}
+
 const { connect } = require('./config/db');
 const seed = require('./seed');
 
