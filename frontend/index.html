@@ -3,34 +3,73 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flight Booking</title>
+    <title>SkyBook Airlines - Search Flights</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
-    <header>
-      <h1>Flight Booking</h1>
-      <p class="tagline">Search and book flights with ease</p>
+    <nav id="navbar"></nav>
+
+    <header class="hero">
+      <div class="hero-inner">
+        <h1>Find your next flight</h1>
+        <p>Search hundreds of routes, book in seconds.</p>
+      </div>
     </header>
 
-    <main>
-      <section class="card">
-        <h2>Server Status</h2>
-        <p id="health-status">Checking...</p>
+    <main class="container">
+      <section class="card search-card">
+        <h2>Search Flights</h2>
+        <form id="searchForm" class="search-grid">
+          <div class="field">
+            <label for="origin">From</label>
+            <input type="text" id="origin" placeholder="e.g. JFK or New York" />
+          </div>
+          <div class="field">
+            <label for="destination">To</label>
+            <input type="text" id="destination" placeholder="e.g. LAX or Los Angeles" />
+          </div>
+          <div class="field">
+            <label for="date">Date</label>
+            <input type="date" id="date" />
+          </div>
+          <div class="field actions">
+            <button type="submit">Search</button>
+            <button type="button" id="resetBtn" class="secondary">Reset</button>
+          </div>
+        </form>
       </section>
 
-      <section class="card">
-        <h2>Available Flights</h2>
-        <button id="refresh-flights">Refresh</button>
-        <ul id="flights-list">
-          <li class="muted">No flights loaded yet.</li>
-        </ul>
+      <section>
+        <div class="results-header">
+          <h2>Available Flights</h2>
+          <span id="resultsCount" class="muted"></span>
+        </div>
+        <div id="results" class="flight-grid">
+          <p class="muted">Loading flights...</p>
+        </div>
       </section>
     </main>
 
-    <footer>
-      <small>Backend API mounted at <code>/api</code></small>
-    </footer>
+    <div id="bookingModal" class="modal hidden">
+      <div class="modal-content">
+        <button class="close" id="closeModal">&times;</button>
+        <h2>Book Flight</h2>
+        <div id="bookingFlightInfo"></div>
+        <form id="bookingForm">
+          <div class="field">
+            <label for="seatNumber">Seat Number</label>
+            <input type="text" id="seatNumber" placeholder="e.g. 12A" required />
+          </div>
+          <div id="bookingError" class="error-msg"></div>
+          <button type="submit">Confirm Booking</button>
+        </form>
+      </div>
+    </div>
 
-    <script src="/app.js"></script>
+    <footer><small>SkyBook Airlines &mdash; built with Node.js, Express, and MongoDB</small></footer>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/nav.js"></script>
+    <script src="/js/search.js"></script>
   </body>
 </html>

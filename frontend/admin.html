@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - SkyBook Airlines</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <nav id="navbar"></nav>
+
+    <main class="container">
+      <section class="card">
+        <h2>Manage Flights</h2>
+
+        <details class="add-flight-details">
+          <summary>Add a new flight</summary>
+          <form id="newFlightForm" class="flight-form">
+            <div class="field">
+              <label>Flight Number</label>
+              <input type="text" id="flightNumber" required placeholder="e.g. AA-9999" />
+            </div>
+            <div class="field">
+              <label>Origin</label>
+              <input type="text" id="origin" required placeholder="e.g. New York (JFK)" />
+            </div>
+            <div class="field">
+              <label>Destination</label>
+              <input type="text" id="destination" required placeholder="e.g. Paris (CDG)" />
+            </div>
+            <div class="field">
+              <label>Departure</label>
+              <input type="datetime-local" id="departureTime" required />
+            </div>
+            <div class="field">
+              <label>Arrival</label>
+              <input type="datetime-local" id="arrivalTime" required />
+            </div>
+            <div class="field">
+              <label>Total Seats</label>
+              <input type="number" id="totalSeats" required min="1" />
+            </div>
+            <div class="field">
+              <label>Seats Available</label>
+              <input type="number" id="seatsAvailable" required min="0" />
+            </div>
+            <div class="field">
+              <label>Price (USD)</label>
+              <input type="number" id="price" required step="0.01" min="0" />
+            </div>
+            <div id="newFlightError" class="error-msg"></div>
+            <button type="submit">Add Flight</button>
+          </form>
+        </details>
+
+        <div id="flightsTable" class="table-wrap">
+          <p class="muted">Loading flights...</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="/js/api.js"></script>
+    <script src="/js/nav.js"></script>
+    <script src="/js/admin.js"></script>
+  </body>
+</html>
